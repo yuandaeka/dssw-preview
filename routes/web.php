@@ -35,6 +35,26 @@ Route::get('/dashboard', function (Request $request) {
     return redirect()->route('course.show');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// Instant Demo Login (Local Development Testing)
+Route::get('/demo-login/{role}', function (string $role) {
+    $email = $role === 'guru' ? 'guru@sekolah.id' : 'siswa@sekolah.id';
+    $user = \App\Models\User::where('email', $email)->first();
+
+    if (! $user) {
+        $user = \App\Models\User::create([
+            'name' => $role === 'guru' ? 'Ibu Guru Pertiwi, M.Pd.' : 'Budi Santoso',
+            'email' => $email,
+            'password' => \Illuminate\Support\Facades\Hash::make('password'),
+            'role' => $role,
+        ]);
+    }
+
+    Auth::login($user, remember: true);
+    request()->session()->regenerate();
+
+    return redirect()->route('dashboard');
+})->name('login.demo');
+
 // Protected Routes (Semua Pengguna Terautentikasi)
 Route::middleware('auth')->group(function () {
     // Profil Pengguna

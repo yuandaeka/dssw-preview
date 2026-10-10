@@ -164,22 +164,22 @@ export default function Login({ status, canResetPassword }) {
                     <span>Akun Uji Coba Cepat (Local Demo)</span>
                 </div>
                 <div className="grid grid-cols-2 gap-2">
-                    <button
-                        type="button"
-                        onClick={() => fillDemo('siswa@sekolah.id', 'password')}
-                        className="flex items-center justify-center gap-1.5 rounded-lg border border-indigo-200 bg-white py-1.5 px-2 text-left font-medium text-indigo-900 shadow-xs hover:bg-indigo-50 transition"
+                    <a
+                        href={route('login.demo', { role: 'siswa' })}
+                        id="btn-demo-siswa"
+                        className="flex items-center justify-center gap-1.5 rounded-xl border border-indigo-200 bg-white py-2.5 px-3 text-center font-bold text-indigo-900 shadow-xs hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all"
                     >
-                        <GraduationCap className="w-3.5 h-3.5 text-indigo-600" />
-                        <span>Siswa (Budi)</span>
-                    </button>
-                    <button
-                        type="button"
-                        onClick={() => fillDemo('guru@sekolah.id', 'password')}
-                        className="flex items-center justify-center gap-1.5 rounded-lg border border-indigo-200 bg-white py-1.5 px-2 text-left font-medium text-indigo-900 shadow-xs hover:bg-indigo-50 transition"
+                        <GraduationCap className="w-4 h-4" />
+                        <span>Masuk Siswa (Budi)</span>
+                    </a>
+                    <a
+                        href={route('login.demo', { role: 'guru' })}
+                        id="btn-demo-guru"
+                        className="flex items-center justify-center gap-1.5 rounded-xl border border-indigo-200 bg-white py-2.5 px-3 text-center font-bold text-indigo-900 shadow-xs hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all"
                     >
-                        <ShieldCheck className="w-3.5 h-3.5 text-indigo-600" />
-                        <span>Guru (Pertiwi)</span>
-                    </button>
+                        <ShieldCheck className="w-4 h-4" />
+                        <span>Masuk Guru (Pertiwi)</span>
+                    </a>
                 </div>
             </div>
         </GuestLayout>
